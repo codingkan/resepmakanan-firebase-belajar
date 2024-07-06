@@ -1,0 +1,4 @@
+.table td {
+    white-space: pre-wrap; /* Mempertahankan spasi dan baris baru */
+    word-wrap: break-word; /* Memungkinkan kata panjang untuk dipecah */
+}
