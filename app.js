@@ -13,12 +13,16 @@ const firebaseConfig = {
   const database = firebase.database();
   
   let namaV = document.getElementById("nama");
-  let resepV = document.getElementById("resep"); 
+  let resepV = document.getElementById("resep");
   let tbody = document.getElementById("tbody");
   let editnama = document.getElementById("editnama");
   let editresep = document.getElementById("editresep");
   let idV = document.getElementById("id");
   
+  function showSuccessMessage(message) {
+    alert(message);
+  }
+
   //Create Data
   function createData() {
       // Ambil nilai dari input nama dan resep
@@ -83,6 +87,8 @@ const firebaseConfig = {
   function updateData() {
     const nama = editnama.value.trim();
     const resep = editresep.value.trim();
+    
+
     if (nama !== "" && resep !== "") {
         const data = {
             nama: nama,
@@ -96,18 +102,21 @@ const firebaseConfig = {
             .then(() => {
                 // Tampilkan notifikasi sukses
                 showSuccessMessage('Resep berhasil diperbarui!');
-                // Tutup modal dan muat ulang tabel data (tanpa reload halaman)
-                $('#exampleModal').modal('hide');  // Tutup modal menggunakan jQuery
-                database.ref("resepmakanan").on("value", ambildata); // Muat ulang tabel data
+
+                // Tutup modal setelah update berhasil
+                $('#exampleModal').modal('hide');  
+
+                // Muat ulang tabel data (tanpa reload halaman)
+                database.ref("resepmakanan").on("value", ambildata); 
             })
             .catch((error) => {
-                console.error("Error updating data:", error);
-                alert("Terjadi kesalahan saat memperbarui data. Silakan coba lagi.");
+                console.error("Error updating data:", error); // Log error ke console
+                alert("Terjadi kesalahan: " + error.message); // Tampilkan pesan error yang lebih spesifik
             });
     } else {
         alert("Nama makanan dan resep harus diisi!");
     }
-} 
+}
   function deleteRow(id) {
     database.ref("resepmakanan/" + id).remove();
   }
