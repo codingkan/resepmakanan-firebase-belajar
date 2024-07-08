@@ -1,4 +1,12 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.table th,
 .table td {
-    white-space: pre-wrap; /* Mempertahankan spasi dan baris baru */
-    word-wrap: break-word; /* Memungkinkan kata panjang untuk dipecah */
+    vertical-align: middle;
+}
+
+.table td {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
