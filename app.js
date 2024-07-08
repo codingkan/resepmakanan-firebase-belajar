@@ -21,13 +21,24 @@ let idV = document.getElementById("id");
 
 //Create Data
 function createData() {
-  let data = {
-      nama: namaV.value,
-      resep: resepV.value 
-  };
-  database.ref("resepmakanan").push(data);
-  namaV.value = "";
-  resepV.value = ""; 
+    // Ambil nilai dari input nama dan resep
+    const nama = namaV.value.trim(); // trim() untuk menghapus spasi di awal dan akhir
+    const resep = resepV.value.trim();
+
+    // Validasi sederhana: Pastikan nama dan resep tidak kosong
+    if (nama !== "" && resep !== "") {
+        let data = {
+            nama: nama,
+            resep: resep
+        };
+        database.ref("resepmakanan").push(data);
+        namaV.value = "";
+        resepV.value = "";
+        showSuccessMessage('Resep berhasil ditambahkan!');
+    } else {
+        // Tampilkan pesan error jika nama atau resep kosong
+        alert("Nama makanan dan resep harus diisi!");
+    }
 }
 
 // Read Data
