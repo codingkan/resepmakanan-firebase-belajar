@@ -83,22 +83,31 @@ function editRow(id) {
 function updateData() {
     const nama = editnama.value.trim();
     const resep = editresep.value.trim();
+
     if (nama !== "" && resep !== "") {
-        let data = {
+        const data = {
             nama: nama,
             resep: resep
         };
+
         database.ref("resepmakanan/" + idV.value).update(data)
             .then(() => {
+                // Tampilkan notifikasi sukses (bisa menggunakan alert atau library lain)
                 showSuccessMessage('Resep berhasil diperbarui!');
 
                 // Tutup modal setelah update berhasil
                 const modalElement = document.getElementById('exampleModal');
                 const modal = bootstrap.Modal.getInstance(modalElement);
                 modal.hide();
+
+                // Reload halaman setelah modal ditutup
+                modalElement.addEventListener('hidden.bs.modal', function () {
+                    location.reload(); // Refresh halaman
+                });
             })
             .catch((error) => {
                 console.error("Error updating data:", error);
+                alert("Terjadi kesalahan saat memperbarui data. Silakan coba lagi.");
             });
     } else {
         alert("Nama makanan dan resep harus diisi!");
