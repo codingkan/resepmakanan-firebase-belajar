@@ -90,9 +90,12 @@ function updateData() {
             resep: resep
         };
 
+        // Pastikan idV.value terisi dengan benar
+        console.log("Updating data with ID:", idV.value); 
+
         database.ref("resepmakanan/" + idV.value).update(data)
             .then(() => {
-                // Tampilkan notifikasi sukses (bisa menggunakan alert atau library lain)
+                // Tampilkan notifikasi sukses
                 showSuccessMessage('Resep berhasil diperbarui!');
 
                 // Tutup modal setelah update berhasil
@@ -100,9 +103,11 @@ function updateData() {
                 const modal = bootstrap.Modal.getInstance(modalElement);
                 modal.hide();
 
-                // Reload halaman setelah modal ditutup
+                // Reload halaman setelah modal ditutup (dengan sedikit delay)
                 modalElement.addEventListener('hidden.bs.modal', function () {
-                    location.reload(); // Refresh halaman
+                    setTimeout(() => {
+                        location.reload(); // Refresh halaman
+                    }, 500); // Delay 500ms (0.5 detik)
                 });
             })
             .catch((error) => {
