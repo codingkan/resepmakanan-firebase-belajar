@@ -108,3 +108,4 @@ function updateData() {
 function deleteRow(id) {
   database.ref("resepmakanan/" + id).remove();
 }
+saveChangesButton.addEventListener('click', updateData);
