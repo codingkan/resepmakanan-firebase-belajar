@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -9,62 +10,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container mt-4">
-        <h1 class="text-center mb-4"><i class="fas fa-utensils"></i> Resep Makanan</h1>
-
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <input type="text" class="form-control" id="nama" placeholder="Nama Makanan">
-            </div>
-            <div class="col-md-6">
-                <button type="button" class="btn btn-primary w-100" onclick="createData()">
-                    <i class="fas fa-plus"></i> Tambah Resep
-                </button>
-            </div>
-        </div>
-        <div class="form-floating mb-3">
-            <textarea class="form-control" id="resep" style="height: 150px" placeholder="Resep Makanan"></textarea>
-            <label for="resep">Resep Makanan</label>
-        </div>
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Resep</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="tbody"></tbody>
-        </table>
-    </div>
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Resep</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="editnama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="editnama">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Resep</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3">
-                    <label for="editresep" class="form-label">Resep</label>
-                    <textarea class="form-control" id="editresep" style="height: 150px"></textarea>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="editnama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="editnama">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editresep" class="form-label">Resep</label>
+                        <textarea class="form-control" id="editresep" style="height: 150px"></textarea>
+                    </div>
+                    <input type="hidden" id="id">
                 </div>
-                <input type="hidden" id="id">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="updateData()">Save changes</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="updateData()">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
